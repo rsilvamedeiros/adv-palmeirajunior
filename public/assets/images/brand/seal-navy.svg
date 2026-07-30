@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <path id="seal-arc-top" d="M 24.82,72.64 A 80,80 0 0 1 175.18,72.64" />
+  </defs>
+  <circle cx="100" cy="100" r="94" fill="none" stroke="#082247" stroke-width="1"/>
+  <circle cx="100" cy="100" r="87" fill="none" stroke="#082247" stroke-width="1"/>
+  <text font-family="Libre Franklin, Arial, sans-serif" font-weight="600" font-size="12.5" letter-spacing="2.6" fill="#082247">
+    <textPath href="#seal-arc-top" startOffset="50%" text-anchor="middle">PALMEIRA JUNIOR</textPath>
+  </text>
+  <g transform="translate(100,108) scale(0.34)" fill="none" stroke="#082247" stroke-width="2.4" stroke-linecap="round">
+    <g transform="translate(-50,-58)">
+      <line x1="50" y1="12" x2="50" y2="83"/>
+      <circle cx="50" cy="9" r="2.6" fill="#082247" stroke="none"/>
+      <line x1="20" y1="27" x2="80" y2="27"/>
+      <rect x="46" y="23" width="8" height="8" fill="#082247" stroke="none" transform="rotate(45 50 27)"/>
+      <g stroke-width="1.6">
+        <line x1="20" y1="27" x2="11" y2="46"/>
+        <line x1="20" y1="27" x2="29" y2="46"/>
+        <path d="M11,46 A9,7 0 0,0 29,46"/>
+        <line x1="80" y1="27" x2="71" y2="46"/>
+        <line x1="80" y1="27" x2="89" y2="46"/>
+        <path d="M71,46 A9,7 0 0,0 89,46"/>
+      </g>
+      <line x1="50" y1="83" x2="38" y2="91"/>
+      <line x1="50" y1="83" x2="62" y2="91"/>
+      <line x1="36" y1="91" x2="64" y2="91"/>
+    </g>
+  </g>
+  <line x1="70" y1="148" x2="130" y2="148" stroke="#082247" stroke-width="0.75"/>
+  <text x="100" y="164" text-anchor="middle" font-family="Libre Franklin, Arial, sans-serif" font-weight="600" font-size="10" letter-spacing="2.4" fill="#082247">ADVOCACIA</text>
+</svg>

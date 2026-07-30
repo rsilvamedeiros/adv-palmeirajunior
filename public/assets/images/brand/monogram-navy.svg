@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <text x="60" y="80" text-anchor="middle" font-family="Piazzolla, Georgia, serif" font-weight="700" font-size="66" fill="#082247">PJ</text>
+  <line x1="16" y1="49" x2="104" y2="49" stroke="#082247" stroke-width="2.2"/>
+  <circle cx="16" cy="49" r="3.4" fill="#082247"/>
+  <circle cx="104" cy="49" r="3.4" fill="#082247"/>
+</svg>
