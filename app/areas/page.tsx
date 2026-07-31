@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ContactCta } from "@/components/sections/contact-cta";
 import { PageIntro } from "@/components/sections/page-intro";
-import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { practiceAreas } from "@/lib/content/practice-areas";
 
@@ -12,51 +12,66 @@ export const metadata: Metadata = {
 };
 
 export default function AreasPage() {
+  const featured = practiceAreas.find((area) => area.featured);
+  const rest = practiceAreas.filter((area) => !area.featured);
+
   return (
     <>
       <PageIntro
         eyebrow="Áreas de Atuação"
         title="Quatro frentes, um mesmo jeito de trabalhar"
-        description="Entender o caso antes de falar em processo — em qualquer uma das áreas abaixo."
+        description="Entender o caso antes de falar em processo — escolha uma área para ver como atuamos nela."
       />
 
-      <Section tone="pergaminho" border={false}>
-        <div className="divide-y divide-grafite/10">
-          {practiceAreas.map((area, index) => (
-            <div
+      <Section tone="pergaminho">
+        <div className="grid gap-px border border-grafite/10 bg-grafite/10 md:grid-cols-3">
+          {featured && (
+            <Link
+              href={`/areas/${featured.slug}`}
+              className="group flex flex-col justify-between gap-8 bg-marfim p-8 transition-colors hover:bg-pergaminho md:col-span-3 md:flex-row md:items-end md:p-10"
+            >
+              <div className="max-w-[46ch]">
+                <p className="font-sans text-xs font-semibold uppercase tracking-[0.14em] text-latao">
+                  Área principal
+                </p>
+                <h2 className="mt-3 font-serif text-2xl font-semibold tracking-tight md:text-[1.75rem]">
+                  {featured.name}
+                </h2>
+                <p className="mt-3 text-[0.95rem] leading-relaxed opacity-75">
+                  {featured.summary}
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2 md:max-w-[280px] md:justify-end">
+                {featured.services.slice(0, 4).map((service) => (
+                  <span
+                    key={service.title}
+                    className="border border-grafite/15 px-3 py-1.5 font-sans text-xs text-grafite/75"
+                  >
+                    {service.title}
+                  </span>
+                ))}
+              </div>
+            </Link>
+          )}
+
+          {rest.map((area) => (
+            <Link
               key={area.slug}
-              id={area.slug}
-              className="grid grid-cols-1 gap-6 py-12 first:pt-0 last:pb-0 md:grid-cols-[200px_1fr] md:gap-10"
+              href={`/areas/${area.slug}`}
+              className="group flex flex-col justify-between gap-6 bg-marfim p-8 transition-colors hover:bg-pergaminho"
             >
               <div>
-                <div className="font-sans text-xs tracking-[0.08em] opacity-60">
-                  {String(index + 1).padStart(2, "0")}
-                </div>
-                <h2 className="mt-2 font-serif text-2xl font-semibold tracking-tight">
+                <h2 className="font-serif text-lg font-semibold tracking-tight">
                   {area.name}
                 </h2>
-              </div>
-              <div className="max-w-[60ch]">
-                <p className="text-[0.95rem] leading-relaxed opacity-75">
+                <p className="mt-3 text-sm leading-relaxed opacity-70">
                   {area.summary}
                 </p>
-                <ul className="mt-5 flex flex-wrap gap-2">
-                  {area.topics.map((topic) => (
-                    <li
-                      key={topic}
-                      className="border border-grafite/15 px-3 py-1.5 font-sans text-xs text-grafite/75"
-                    >
-                      {topic}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-6">
-                  <Button href="/contato" variant="outline-navy" className="px-5 py-2.5 text-xs">
-                    Conversar sobre {area.name.toLowerCase()}
-                  </Button>
-                </div>
               </div>
-            </div>
+              <span className="font-sans text-sm font-semibold text-latao underline decoration-latao/40 underline-offset-4 group-hover:decoration-latao">
+                Ver detalhes →
+              </span>
+            </Link>
           ))}
         </div>
       </Section>

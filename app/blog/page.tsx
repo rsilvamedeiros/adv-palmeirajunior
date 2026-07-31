@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ContactCta } from "@/components/sections/contact-cta";
 import { PageIntro } from "@/components/sections/page-intro";
 import { Section } from "@/components/ui/section";
@@ -27,27 +28,29 @@ export default function BlogPage() {
       <Section tone="pergaminho" border={false}>
         <div className="divide-y divide-grafite/10">
           {articles.map((article) => (
-            <article
-              key={article.slug}
-              className="grid grid-cols-1 gap-4 py-10 first:pt-0 last:pb-0 md:grid-cols-[200px_1fr] md:gap-10"
-            >
-              <div className="font-sans text-xs text-grafite/55">
-                <p>{dateFormatter.format(new Date(article.date))}</p>
-                <p className="mt-1 font-semibold uppercase tracking-[0.1em] text-latao">
-                  {article.category}
-                </p>
-              </div>
-              <div className="max-w-[62ch]">
-                <h2 className="text-balance font-serif text-xl font-semibold tracking-tight">
-                  {article.title}
-                </h2>
-                <p className="mt-3 text-sm leading-relaxed opacity-70">
-                  {article.excerpt}
-                </p>
-                <p className="mt-4 font-sans text-xs text-grafite/55">
-                  {article.readTime} de leitura
-                </p>
-              </div>
+            <article key={article.slug}>
+              <Link
+                href={`/blog/${article.slug}`}
+                className="group grid grid-cols-1 gap-4 py-10 first:pt-0 last:pb-0 md:grid-cols-[200px_1fr] md:gap-10"
+              >
+                <div className="font-sans text-xs text-grafite/55">
+                  <p>{dateFormatter.format(new Date(article.date))}</p>
+                  <p className="mt-1 font-semibold uppercase tracking-[0.1em] text-latao">
+                    {article.category}
+                  </p>
+                </div>
+                <div className="max-w-[62ch]">
+                  <h2 className="text-balance font-serif text-xl font-semibold tracking-tight group-hover:text-navy">
+                    {article.title}
+                  </h2>
+                  <p className="mt-3 text-sm leading-relaxed opacity-70">
+                    {article.excerpt}
+                  </p>
+                  <p className="mt-4 font-sans text-xs text-grafite/55">
+                    {article.readTime} de leitura
+                  </p>
+                </div>
+              </Link>
             </article>
           ))}
         </div>

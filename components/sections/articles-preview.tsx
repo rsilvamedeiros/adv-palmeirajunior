@@ -21,7 +21,7 @@ export function ArticlesPreview() {
         {articles.map((article) => (
           <Link
             key={article.slug}
-            href="/blog"
+            href={`/blog/${article.slug}`}
             className="group flex flex-col justify-between gap-8 bg-marfim p-8 transition-colors hover:bg-pergaminho"
           >
             <div>

@@ -5,16 +5,18 @@ import Link from "next/link";
 import { useState } from "react";
 import { LogoLockup } from "@/components/brand/logo-lockup";
 import { Button } from "@/components/ui/button";
+import { practiceAreas } from "@/lib/content/practice-areas";
 
 const navItems = [
-  { href: "/areas", label: "Áreas de Atuação" },
   { href: "/sobre", label: "Sobre" },
   { href: "/blog", label: "Blog" },
+  { href: "/faq", label: "FAQ" },
   { href: "/contato", label: "Contato" },
 ];
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [areasOpen, setAreasOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 bg-navy text-marfim">
@@ -24,6 +26,47 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
+          <div className="group relative">
+            <Link
+              href="/areas"
+              className="flex items-center gap-1.5 font-sans text-sm font-medium text-marfim/80 transition-colors hover:text-marfim"
+            >
+              Áreas de Atuação
+              <svg
+                viewBox="0 0 10 6"
+                className="h-[5px] w-[8px] fill-current opacity-60"
+                aria-hidden="true"
+              >
+                <path d="M0 0 5 6 10 0Z" />
+              </svg>
+            </Link>
+
+            <div className="invisible absolute left-1/2 top-full w-64 -translate-x-1/2 pt-3 opacity-0 transition-opacity duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+              <div className="border border-marfim/10 bg-navy-ink shadow-xl shadow-black/20">
+                <ul className="py-2">
+                  {practiceAreas.map((area) => (
+                    <li key={area.slug}>
+                      <Link
+                        href={`/areas/${area.slug}`}
+                        className="block px-5 py-3 font-sans text-sm text-marfim/80 transition-colors hover:bg-marfim/5 hover:text-marfim"
+                      >
+                        {area.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <div className="border-t border-marfim/10 px-5 py-3">
+                  <Link
+                    href="/areas"
+                    className="font-sans text-xs font-semibold text-latao"
+                  >
+                    Ver todas as áreas →
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -76,6 +119,48 @@ export function SiteHeader() {
       {open && (
         <div className="border-t border-marfim/10 px-6 py-4 md:hidden">
           <nav className="flex flex-col gap-1">
+            <div>
+              <button
+                type="button"
+                onClick={() => setAreasOpen((v) => !v)}
+                aria-expanded={areasOpen}
+                className="flex w-full items-center justify-between py-2.5 font-sans text-sm font-medium text-marfim/85"
+              >
+                Áreas de Atuação
+                <svg
+                  viewBox="0 0 10 6"
+                  className={clsx(
+                    "h-[6px] w-[10px] fill-current opacity-60 transition-transform",
+                    areasOpen && "rotate-180",
+                  )}
+                  aria-hidden="true"
+                >
+                  <path d="M0 0 5 6 10 0Z" />
+                </svg>
+              </button>
+              {areasOpen && (
+                <div className="flex flex-col gap-0.5 border-l border-marfim/10 pb-2 pl-4">
+                  {practiceAreas.map((area) => (
+                    <Link
+                      key={area.slug}
+                      href={`/areas/${area.slug}`}
+                      onClick={() => setOpen(false)}
+                      className="py-2 font-sans text-sm text-marfim/70"
+                    >
+                      {area.name}
+                    </Link>
+                  ))}
+                  <Link
+                    href="/areas"
+                    onClick={() => setOpen(false)}
+                    className="py-2 font-sans text-sm font-semibold text-latao"
+                  >
+                    Ver todas as áreas →
+                  </Link>
+                </div>
+              )}
+            </div>
+
             {navItems.map((item) => (
               <Link
                 key={item.href}

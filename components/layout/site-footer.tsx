@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { LogoLockup } from "@/components/brand/logo-lockup";
+import { practiceAreas } from "@/lib/content/practice-areas";
 
 const navColumns = [
   {
@@ -10,17 +11,16 @@ const navColumns = [
       { href: "/sobre", label: "Sobre" },
       { href: "/blog", label: "Blog" },
       { href: "/orientacao", label: "Orientação Jurídica" },
+      { href: "/faq", label: "Perguntas Frequentes" },
       { href: "/contato", label: "Contato" },
     ],
   },
   {
     title: "Áreas de Atuação",
-    links: [
-      { href: "/areas#familia", label: "Direito de Família" },
-      { href: "/areas#civel", label: "Direito Cível" },
-      { href: "/areas#empresarial", label: "Direito Empresarial" },
-      { href: "/areas#trabalhista", label: "Direito Trabalhista" },
-    ],
+    links: practiceAreas.map((area) => ({
+      href: `/areas/${area.slug}`,
+      label: area.name,
+    })),
   },
 ];
 
